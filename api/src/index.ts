@@ -1,27 +1,20 @@
-import express from "express";
-import cors from "cors";
-const app = express();
+import express from "express"
+import  cors from "cors"
+import "./connection"
+import bodyparser from "body-parser"
+import ruteuser from "./user"
 
-let tasks: string[] = [];
+const app = express()
 
 app.use(cors());
 app.use(express.json());
-/// GET
-app.get("/tasks", (req, res) => {
-  res.send({ tasks: tasks });
+app.use("/api/user", ruteuser);
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
+app.get("/", (req, res) => {
+  res.end("Bienvenido al servidor");
 });
 
-// POST
-
-app.post("/tasks", (req, res) => {
-  tasks = tasks.concat(req.body.task);
-  res.send({ tasks: tasks });
-});
-
-app.get("/components", (req, res) => {
-  res.send({ data: "component" });
-});
-
-app.listen(8080, () => {
-  console.log("APP RUNNIN IN PORT 8080");
+app.listen(3004, function () {
+  console.log("RUN");
 });
