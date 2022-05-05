@@ -1,10 +1,10 @@
-import express from "express"
-import  cors from "cors"
-import "./connection"
-import bodyparser from "body-parser"
-import ruteuser from "./user"
+import express from "express";
+import cors from "cors";
+import "./connection";
+import bodyparser from "body-parser";
+import ruteuser from "./user";
 
-const app = express()
+const app = express();
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +15,6 @@ app.get("/", (req, res) => {
   res.end("Bienvenido al servidor");
 });
 
-app.listen(3004, function () {
-  console.log("RUN");
+app.listen(3004, () => {
+  console.log("APP RUNNIN IN PORT 8080");
 });
