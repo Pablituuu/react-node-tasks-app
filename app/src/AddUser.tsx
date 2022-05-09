@@ -1,29 +1,14 @@
 import React, { useState } from "react";
 import uniquid from "uniqid";
 import axios from "axios";
+import { addUser } from "./store/services/api";
 
 function AddUser() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelefphone] = useState("");
+  const iduser = uniquid;
 
-  function addUser() {
-    var user = {
-      name: name,
-      email: email,
-      telephone: telephone,
-      iduser: uniquid,
-    };
-    console.log(user);
-    axios
-      .post("http://localhost:3004/api/user/adduser", user)
-      .then((res) => {
-        alert(res.data);
-      })
-      .then((err) => {
-        console.log(err);
-      });
-  }
   return (
     <div className="container">
       <div className="row">
@@ -74,7 +59,10 @@ function AddUser() {
               }}
             ></input>
           </div>
-          <button onClick={addUser} className="btn btn-success">
+          <button
+            onClick={() => addUser(name, email, telephone, iduser)}
+            className="btn btn-success"
+          >
             Save User
           </button>
         </div>

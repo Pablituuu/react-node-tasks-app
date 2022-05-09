@@ -15,9 +15,9 @@ function ListUser() {
       });
   }, []);
 
-  const listusers = datauser.map((user) => {
+  const listusers = datauser.map((user: any) => {
     return (
-      <div>
+      <div key={user._id}>
         <SingleUser user={user}></SingleUser>
       </div>
     );
